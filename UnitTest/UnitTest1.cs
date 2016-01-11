@@ -23,6 +23,13 @@ namespace UnitTest
 
             Assert.AreEqual(KeyWord, Result, @"Wsupp[This is a Pen.] = [This is a Pen.]");
             #endregion
+
+            #region 対象：評価対象なし２
+            Wsupp.Exec(@"This is a Pen.");
+            Result = Wsupp.Wbuf;
+
+            Assert.AreEqual(@"This is a Pen.", Result, @"Wsupp[This is a Pen.] = [This is a Pen.]");
+            #endregion
         }
 
         [TestMethod]
