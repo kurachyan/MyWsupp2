@@ -10,8 +10,12 @@ namespace Wsupp
     public class CS_Wsupp
     {
         #region 共有領域
+        // '16.0103 両側余白情報削除の追加　及び、右側・左側余白処理のコメント化
+/*
         CS_Rskip rskip;             // 右側余白情報を削除
         CS_Lskip lskip;             // 左側余白情報を削除
+*/
+        CS_LRskip lrskip;           // 両側余白情報を削除
 
         struct SepString
         {   // 文字列分割管理
@@ -41,6 +45,7 @@ namespace Wsupp
                 else
                 {   // 整形処理を行う
                     // 不要情報削除
+/*
                     if (rskip == null || lskip == null)
                     {   // 未定義？
                         rskip = new CS_Rskip();
@@ -51,6 +56,13 @@ namespace Wsupp
                     lskip.Wbuf = rskip.Wbuf;
                     lskip.Exec();
                     _wbuf = lskip.Wbuf;
+*/
+                    if (lrskip == null)
+                    {   // 未定義？
+                        lrskip = new CS_LRskip();
+                    }
+                    lrskip.Exec(_wbuf);
+                    _wbuf = lrskip.Wbuf;
 
                     // 作業の為の下処理
                     if (_wbuf.Length == 0 || _wbuf == null)
@@ -72,10 +84,11 @@ namespace Wsupp
         {   // コンストラクタ
             _wbuf = null;       // 設定情報無し
             _empty = true;
-
+/*
             rskip = null;
             lskip = null;
-
+*/
+            lrskip = null;
         }
         #endregion
 
@@ -84,10 +97,11 @@ namespace Wsupp
         {   // 作業領域の初期化
             _wbuf = null;       // 設定情報無し
             _empty = true;
-
+/*
             rskip = null;
             lskip = null;
-
+*/
+            lrskip = null;
         }
         public void Exec()
         {   // 引用消去を行う
@@ -239,6 +253,7 @@ namespace Wsupp
             else
             {   // 整形処理を行う
                 // 不要情報削除
+/*
                 if (rskip == null || lskip == null)
                 {   // 未定義？
                     rskip = new CS_Rskip();
@@ -249,6 +264,13 @@ namespace Wsupp
                 lskip.Wbuf = rskip.Wbuf;
                 lskip.Exec();
                 _wbuf = lskip.Wbuf;
+*/
+                if (lrskip == null)
+                {   // 未定義？
+                    lrskip = new CS_LRskip();
+                }
+                lrskip.Exec(_wbuf);
+                _wbuf = lrskip.Wbuf;
 
                 // 作業の為の下処理
                 if (_wbuf.Length == 0 || _wbuf == null)
