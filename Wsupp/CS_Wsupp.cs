@@ -10,11 +10,7 @@ namespace Wsupp
     public class CS_Wsupp
     {
         #region 共有領域
-        // '16.0103 両側余白情報削除の追加　及び、右側・左側余白処理のコメント化
-/*
-        CS_Rskip rskip;             // 右側余白情報を削除
-        CS_Lskip lskip;             // 左側余白情報を削除
-*/
+        // '16.01.13 両側余白情報削除の追加　及び、右側・左側余白処理のコメント化
         CS_LRskip lrskip;           // 両側余白情報を削除
 
         struct SepString
@@ -27,8 +23,8 @@ namespace Wsupp
             internal String back;   // 後方キーワード
             internal String spc;    // 空白設定情報
         }
-        private String _wbuf;       // ソース情報
-        private Boolean _empty;     // ソース情報有無
+        private static String _wbuf;       // ソース情報
+        private static Boolean _empty;     // ソース情報有無
         public String Wbuf
         {
             get
@@ -45,18 +41,6 @@ namespace Wsupp
                 else
                 {   // 整形処理を行う
                     // 不要情報削除
-/*
-                    if (rskip == null || lskip == null)
-                    {   // 未定義？
-                        rskip = new CS_Rskip();
-                        lskip = new CS_Lskip();
-                    }
-                    rskip.Wbuf = _wbuf;
-                    rskip.Exec();
-                    lskip.Wbuf = rskip.Wbuf;
-                    lskip.Exec();
-                    _wbuf = lskip.Wbuf;
-*/
                     if (lrskip == null)
                     {   // 未定義？
                         lrskip = new CS_LRskip();
@@ -84,10 +68,7 @@ namespace Wsupp
         {   // コンストラクタ
             _wbuf = null;       // 設定情報無し
             _empty = true;
-/*
-            rskip = null;
-            lskip = null;
-*/
+
             lrskip = null;
         }
         #endregion
@@ -97,10 +78,7 @@ namespace Wsupp
         {   // 作業領域の初期化
             _wbuf = null;       // 設定情報無し
             _empty = true;
-/*
-            rskip = null;
-            lskip = null;
-*/
+
             lrskip = null;
         }
         public void Exec()
@@ -253,18 +231,6 @@ namespace Wsupp
             else
             {   // 整形処理を行う
                 // 不要情報削除
-/*
-                if (rskip == null || lskip == null)
-                {   // 未定義？
-                    rskip = new CS_Rskip();
-                    lskip = new CS_Lskip();
-                }
-                rskip.Wbuf = _wbuf;
-                rskip.Exec();
-                lskip.Wbuf = rskip.Wbuf;
-                lskip.Exec();
-                _wbuf = lskip.Wbuf;
-*/
                 if (lrskip == null)
                 {   // 未定義？
                     lrskip = new CS_LRskip();
